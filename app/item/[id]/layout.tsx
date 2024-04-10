@@ -1,18 +1,18 @@
 import { notFound } from 'next/navigation'
-import Story from 'components/story';
-import CommentForm from 'components/comment-form';
-import styles from './layout.module.css';
+import Story from 'components/story'
+import CommentForm from 'components/comment-form'
+import styles from './layout.module.css'
 import getItem from 'lib/get-item'
 import fetchData from 'lib/fetch-data'
 
-export const dynamicParams = true;
+export const dynamicParams = true
 
 export async function generateStaticParams() {
   // Preload the top 30 stories
   const storyIds = await fetchData('topstories')
-  return storyIds.slice(0, 30).map(id => ({
-    id: '' + id,
-  }));
+  return storyIds.slice(0, 30).map((id) => ({
+    id: '' + id
+  }))
 }
 
 export default async function ItemPage({ params, children }) {
@@ -29,5 +29,5 @@ export default async function ItemPage({ params, children }) {
       </div>
       {children}
     </div>
-  );
+  )
 }
